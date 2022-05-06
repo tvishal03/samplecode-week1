@@ -1,0 +1,55 @@
+
+
+1. class based component / stateful component 
+
+    - 'state' to store some data
+    - we can use the life cycle method
+
+    class Courses extend React.Component {
+
+        state = {
+            //store data
+        }
+
+        render() {
+
+            return //jsx code to describe the UI
+
+        }
+    }
+
+
+2. function component / stateless / presentational component
+
+        *16.8 = introduced concept of Hooks, using hooks we can maintain state 
+
+        function Courses () {
+
+            return //jsx code 
+        
+        }
+
+
+    Life cycle of component 
+    --------------------------
+        1. mounting phase
+                - component is getting rendered for the 1st time
+
+               1. constructor
+               2. render
+               3. componentDidMount()
+
+        2. updating phase 
+
+        3. unmounting phase
+
+
+        handleRemove = () => {
+
+        }
+
+
+        <element onClick={ this.handleRemove }> xxxx </element>
+
+
+        <element onClick={ ()=> this.handleRemove(xx) }> xxxx </element>
