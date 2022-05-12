@@ -53,3 +53,19 @@
 
 
         <element onClick={ ()=> this.handleRemove(xx) }> xxxx </element>
+
+
+
+        object destructuring assignment 
+
+        const person {
+            fname : 'vishal',
+            lname : 'shah',
+            age : 38,
+            location : 'Pune'
+        }
+
+        const fname = person.fname;
+        const lname = person.lname;
+
+        const { fname:fn, lname } = person;

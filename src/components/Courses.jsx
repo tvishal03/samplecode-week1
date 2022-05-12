@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getCourses } from '../services/fakeCourseService';
 import Pagination from './Pagination';
+import { paginate } from '../util/paginate';
 
 class Courses extends Component {
 
@@ -9,9 +10,14 @@ class Courses extends Component {
        // console.log('constructor')
         this.state = {
             courses : [],
-            pageSize : 2
+            pageSize : 2,
+            currentPage: 1
         }
     }
+
+    handlePageChange = page => {
+        this.setState({ currentPage: page });
+      };
 
     componentDidMount(){
        // console.log('componentDidMount()')
@@ -28,8 +34,10 @@ class Courses extends Component {
     render() {
         //console.log('render()')
 
-        const { courses, pageSize } = this.state;
+        const { courses, pageSize, currentPage } = this.state;
         const { length:count } = courses;
+
+        const paginatedData = paginate(courses, currentPage, pageSize)
 
         if(count===0)
             return <p>No Courses yet!..</p>
@@ -53,7 +61,7 @@ class Courses extends Component {
                     </thead>
                     <tbody>
                         {
-                            courses.map( course => (
+                            paginatedData.map( course => (
                                    <tr key={course._id}>
                                        <td>{course.title}</td>
                                        <td>{course.category.name}</td>
@@ -74,7 +82,10 @@ class Courses extends Component {
 
                 <Pagination
                     itemsCount={count}
-                    pageSize={pageSize} />
+                    pageSize={pageSize}
+                    currentPage={currentPage}
+                    onPageChange={this.handlePageChange}
+          />
 
             </div>
         );
